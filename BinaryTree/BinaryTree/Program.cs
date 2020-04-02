@@ -8,26 +8,80 @@ namespace BinaryTree
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Menu()
+        {
+            string input;
+            bool validInput = false;
+            int num;
+
+            Console.WriteLine("Was wollen Sie tun? Geben Sie jeweils die Zahl ein.\n");
+            Console.WriteLine("1. Einen Baum erstellen und nach Werten suchen");
+            Console.WriteLine("2. Unseren Beispiel Baum erstellen und nach Werten suchen\n");
+
+            do
+            {
+                Console.Write(": ");
+                input = Console.ReadLine();
+                validInput = Int32.TryParse(input, out num);
+
+                if (!(validInput && num >= 1 && num <= 2)) validInput = false;
+                Console.WriteLine();
+
+            } while (!validInput);
+
+            Console.Clear();            
+            if (num == 1) MakeTree();
+            if (num == 2) ExampleTree();
+
+        }
+        
+        static void MakeTree()
         {
             List<int> inputList = new List<int>();
             List<string> pathList = new List<string>();
 
             BTree myTree = new BTree();
-            inputList = Interface.Input("Input");
+            inputList = Interface.Input("Input", "Geben Sie Zahlen ein die Sie zum Binary Tree hinzufügen wollen");
 
             foreach (var item in inputList) myTree.Insert(item);
 
             //Wert Finden
-            inputList = Interface.Input("Werte Finden");
+            inputList = Interface.Input("Werte Finden", "Geben Sie Zahlen ein die Sie im Binary Tree suchen wollen");
             foreach (var item in inputList)
             {
                 myTree.Find(item);
-                pathList.Add(BTree.path);
+                if (BTree.foundValue == true) pathList.Add(BTree.path);
+                else pathList.Add("Wert wurde nicht gefunden");
+
                 BTree.path = "";
             }
 
-            Interface.PrintPath(pathList,inputList);
+            Interface.PrintPath(pathList, inputList);
+        }
+
+        static void ExampleTree()
+        {
+            List<int> inputList = new List<int>();
+            List<string> pathList = new List<string>();
+
+            BTree myTree = new BTree();
+
+
+            //Wert Finden
+            Console.WriteLine("Werte Finden");
+            foreach (var item in inputList)
+            {
+                myTree.Find(item);
+                if (BTree.foundValue == true) pathList.Add(BTree.path);
+                BTree.path = "";
+            }
+
+            Interface.PrintPath(pathList, inputList);
+        }
+
+        static void Main(string[] args)
+        {
+            Menu();   
         }
     }
 }

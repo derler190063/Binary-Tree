@@ -11,6 +11,7 @@ namespace BinaryTree
     {
         public Node root;
         public static string path = "";
+        public static bool foundValue;
 
         public void Insert(int val)
         {
@@ -26,8 +27,15 @@ namespace BinaryTree
 
         public void Find(int val)
         {
+            foundValue = true;
+
             if (root != null) root.Find(val);
-            else { Console.WriteLine("Wert wurde nicht gefunden ({0})", val); path = ""; }
+            else 
+            {
+                foundValue = false;
+                Console.WriteLine("Wert wurde nicht gefunden ({0})", val); 
+                path = ""; 
+            }
         }
     }
 
@@ -83,7 +91,8 @@ namespace BinaryTree
         static bool CheckNull(Node var, int val)
         {
             if (var == null) 
-            { 
+            {
+                BTree.foundValue = false;
                 Console.WriteLine("Wert wurde nicht gefunden ({0})",val); 
                 BTree.path = ""; 
                 return false; 

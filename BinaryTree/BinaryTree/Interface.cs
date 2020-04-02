@@ -7,7 +7,7 @@ namespace BinaryTree
     class Interface
     {
            
-        public static List<int> Input(string prompt)
+        public static List<int> Input(string prompt,string words)
         {
             List<int> valList = new List<int>();
             string input;
@@ -17,7 +17,7 @@ namespace BinaryTree
 
             Console.WriteLine(prompt);
             Console.WriteLine();
-            Console.WriteLine("Geben Sie Inputs ein die Sie zum Binary Tree hinzufügen wollen.");
+            Console.WriteLine(words);
             Console.WriteLine("Wenn Sie fertig sind dann geben sie ende ein.\n");
 
             do
@@ -62,7 +62,8 @@ namespace BinaryTree
 
             for(int i = 0; i < pathLength; i++)
             {
-                pathList.Add(MakeReverse(pathList[i]));
+                if(pathList[i] != "Wert wurde nicht gefunden") pathList.Add(MakeReverse(pathList[i]));
+                pathList.Add(pathList[i]);
             }
             pathList.RemoveRange(0, pathLength);
 
@@ -85,13 +86,13 @@ namespace BinaryTree
         {
             string reverseword = "";
 
-            for(int i = word.Length - 1; i >= 0; i--)
+            for(int i = word.Length - 1; i >= 1; i--)
             {
                 reverseword += word[i];    
             }
 
             return reverseword;
-        }
+        }        
         
     }
 }
