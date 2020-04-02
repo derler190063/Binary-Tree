@@ -56,7 +56,7 @@ namespace BinaryTree
                 BTree.path = "";
             }
 
-            Interface.PrintPath(pathList, inputList);
+            Interface.PrintList(pathList, inputList);
         }
 
         static void ExampleTree()
@@ -66,8 +66,22 @@ namespace BinaryTree
 
             BTree myTree = new BTree();
 
+            inputList.Add(10);
+            inputList.Add(5);
+            inputList.Add(2);
+            inputList.Add(3);
+            inputList.Add(8);
+            inputList.Add(6);
+            inputList.Add(9);
+            inputList.Add(18);
+            inputList.Add(17);
+            inputList.Add(23);
+            inputList.Add(40);
 
-            //Wert Finden
+            Interface.PrintList(inputList);
+            foreach (var item in inputList) myTree.Insert(item);
+
+            //Wert Finden            
             Console.WriteLine("Werte Finden");
             foreach (var item in inputList)
             {
@@ -76,7 +90,7 @@ namespace BinaryTree
                 BTree.path = "";
             }
 
-            Interface.PrintPath(pathList, inputList);
+            Interface.PrintList(pathList, inputList);
         }
 
         static void Main(string[] args)
