@@ -78,11 +78,11 @@ namespace BinaryTree
             inputList.Add(23);
             inputList.Add(40);
 
+            Console.WriteLine();
+
             Interface.PrintList(inputList);
             foreach (var item in inputList) myTree.Insert(item);
-
-            //Wert Finden            
-            Console.WriteLine("Werte Finden");
+         
             foreach (var item in inputList)
             {
                 myTree.Find(item);
