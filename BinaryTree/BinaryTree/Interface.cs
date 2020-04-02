@@ -63,7 +63,7 @@ namespace BinaryTree
             for(int i = 0; i < pathLength; i++)
             {
                 if(pathList[i] != "Wert wurde nicht gefunden") pathList.Add(MakeReverse(pathList[i]));
-                pathList.Add(pathList[i]);
+                else pathList.Add(pathList[i]);
             }
             pathList.RemoveRange(0, pathLength);
 

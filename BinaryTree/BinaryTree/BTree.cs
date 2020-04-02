@@ -33,7 +33,6 @@ namespace BinaryTree
             else 
             {
                 foundValue = false;
-                Console.WriteLine("Wert wurde nicht gefunden ({0})", val); 
                 path = ""; 
             }
         }
@@ -93,7 +92,6 @@ namespace BinaryTree
             if (var == null) 
             {
                 BTree.foundValue = false;
-                Console.WriteLine("Wert wurde nicht gefunden ({0})",val); 
                 BTree.path = ""; 
                 return false; 
             }
