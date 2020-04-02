@@ -15,6 +15,8 @@ namespace BinaryTree
             bool exit = false;
             bool validInput;
 
+            Console.WriteLine(prompt);
+            Console.WriteLine();
             Console.WriteLine("Geben Sie Inputs ein die Sie zum Binary Tree hinzufügen wollen.");
             Console.WriteLine("Wenn Sie fertig sind dann geben sie ende ein.\n");
 
@@ -53,19 +55,42 @@ namespace BinaryTree
             return valList;
         }
 
-        public static void PrintPath(List<string> pathList)
+        public static void PrintPath(List<string> pathList, List<int> inputList)
         {
-            foreach (var item in pathList)
+            int pathLength;
+            pathLength = pathList.Count();
+
+            for(int i = 0; i < pathLength; i++)
             {
-                item.Remove(item.Length - 1, 1);
+                pathList.Add(MakeReverse(pathList[i]));
+            }
+            pathList.RemoveRange(0, pathLength);
+
+            
+            if(pathLength != 0)
+            {
+                if(pathList[0] != "")
+                {
+                    Console.WriteLine("Position der Werte:\n");
+
+                    for (int i = 0; i < pathList.Count(); i++)
+                    {
+                        Console.WriteLine("{0}. Wert ({1}): {2}", i + 1, inputList[i],pathList[i]);
+                    }
+                }
+            }
+        }
+
+        static string MakeReverse(string word)
+        {
+            string reverseword = "";
+
+            for(int i = word.Length - 1; i >= 0; i--)
+            {
+                reverseword += word[i];    
             }
 
-            Console.WriteLine("Position der Werte:\n");
-
-            for (int i = 0; i < pathList.Count(); i++)
-            {
-                Console.WriteLine("{0}. Wert: {1}", i + 1, pathList[i]);
-            }
+            return reverseword;
         }
         
     }

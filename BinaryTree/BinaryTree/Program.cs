@@ -23,10 +23,11 @@ namespace BinaryTree
             foreach (var item in inputList)
             {
                 myTree.Find(item);
-                pathList.Add(Node.path);
+                pathList.Add(BTree.path);
+                BTree.path = "";
             }
 
-            Interface.PrintPath(pathList);
+            Interface.PrintPath(pathList,inputList);
         }
     }
 }

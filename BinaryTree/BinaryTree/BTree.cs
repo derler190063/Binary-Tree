@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace BinaryTree
 {
+
     class BTree
     {
         public Node root;
+        public static string path = "";
 
         public void Insert(int val)
         {
@@ -25,7 +27,7 @@ namespace BinaryTree
         public void Find(int val)
         {
             if (root != null) root.Find(val);
-            else Console.WriteLine("Value not found tree");
+            else { Console.WriteLine("Wert wurde nicht gefunden ({0})", val); path = ""; }
         }
     }
 
@@ -35,8 +37,7 @@ namespace BinaryTree
 
         public Node childLeftNode;
         public Node childRightNode;
-
-        public static string path = "";
+       
 
         public Node(int val)
         {
@@ -71,23 +72,22 @@ namespace BinaryTree
 
         public void Find(int val)
         {
-
-            if (value == val)
+         
+            if(value != val)
             {
-                Console.WriteLine("Found");
-                Console.WriteLine(value);
+                if (val < value && CheckNull(childLeftNode,val)) { childLeftNode.Find(val); BTree.path += ",L"; }
+                if (val > value && CheckNull(childRightNode,val)) { childRightNode.Find(val); BTree.path += ",R"; }
             }
-            else
-            {
-                if (val < value && CheckNull(childLeftNode)) { childLeftNode.Find(val); path += "L,"; }
-                if (val > value && CheckNull(childRightNode)) { childRightNode.Find(val); path += "R,"; }
-            }
-
         }
 
-        static bool CheckNull(Node var)
+        static bool CheckNull(Node var, int val)
         {
-            if (var == null) { Console.WriteLine("Value not Found"); return false; }
+            if (var == null) 
+            { 
+                Console.WriteLine("Wert wurde nicht gefunden ({0})",val); 
+                BTree.path = ""; 
+                return false; 
+            }
             else return true;
 
         }
